@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+{% for pitch in pitches %}
+  <h2>{{ pitch.title}}</h2> 
+  <p>{{ pitch.pitch}}</p>
+  <p>{{ pitch.time.strftime('%B %d, %Y')}}</p> 
+  <p>{{ pitch.user.username }}</p>
+  <h1>Hello</h1>
+  <hr>
+{% endfor %}
+{% endblock %}
