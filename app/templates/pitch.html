@@ -1,0 +1,60 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+{% block content %}
+<div class="container-fluid">
+ <div class="row poster2">
+  <nav>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-brand" href="/"> 1 Minute rush </a></li>
+        <li><a href="/">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+        <li>
+          <a href="{{url_for('main.add_pitch')}}"
+            >Add Pitch</a
+          >
+          </li>
+          <li>
+          <a href="{{url_for('main.profile',uname=current_user.username)}}"
+            >Profile</a
+          >
+        </li>
+        <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+        {% else %}
+        <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+        {%endif%}
+      </ul>
+    </div>
+  </nav>
+ </div>
+
+ <div class="row">
+    <div class="col-md-6">
+     <h2>{{ pitch.title }}</h2> 
+     <p>{{ pitch.pitch }}</p>
+     <p><em>{{ pitch.user.username }}</em></p>
+     <p>({{ pitch.time }})</p>
+     <a class="btn btn-primary text-center" href="{{url_for('main.new_comment',id = pitch.id)}}"> Write a new comment</a>
+    </div>
+    <div class="col-md-6">
+     <h1>Comments</h1>
+     <hr>
+ 
+     {% if comments %}
+        {{ macro.displayComments(comments)}}
+ 
+     {% else%}
+         <h3 class="text-center">This pitch has no reviews </h3>
+ 
+         <a class="btn btn-primary text-center" href="{{url_for('main.new_comment',id = pitch.id)}}"> Write a new comment</a>
+     {% endif %}
+    </div>
+  </div>
+</div>
+
+</div>
+
+{% endblock %}

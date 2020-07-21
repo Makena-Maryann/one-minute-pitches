@@ -1,10 +1,44 @@
-{% extends 'base.html' %} {% block content %}
-{% for pitch in pitches %}
-  <h2>{{ pitch.title}}</h2> 
-  <p>{{ pitch.pitch}}</p>
-  <p>{{ pitch.time.strftime('%B %d, %Y')}}</p> 
-  <p>{{ pitch.user.username }}</p>
-  <h1>Hello</h1>
-  <hr>
-{% endfor %}
+{% extends 'base.html' %} 
+{% import 'macros.html' as macro%}
+
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row poster">
+    <nav>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="/"> 1 Minute rush </a></li>
+          <li><a href="/">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="{{url_for('main.add_pitch')}}"
+              >Add Pitch</a
+            >
+            </li>
+            <li>
+            <a href="{{url_for('main.profile',uname=current_user.username)}}"
+              >Profile</a
+            >
+          </li>
+          <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+          {% else %}
+          <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+          {%endif%}
+        </ul>
+      </div>
+    </nav>
+  </div>
+ 
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      {{ macro.displayPitches(pitches)}}
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
 {% endblock %}

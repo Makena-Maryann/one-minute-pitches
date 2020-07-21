@@ -1,15 +1,17 @@
-{% extends 'base.html' %} {% block content %} {% import 'bootstrap/wtf.html' as
-wtf%}
-<div class="container">
-  <div class="row">
-    <img src="" alt="">
+{% extends 'base.html' %}  
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{% block content %}
+<div class="container-fluid bg-image">
+  <div class="row styler">
+    
   </div>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
       {{wtf.quick_form(pitch_form)}}
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-4"></div>
   </div>
 </div>
 

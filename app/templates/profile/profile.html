@@ -1,39 +1,70 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<div class="container">
- <div class="row">
-  <div class="col-md-4">
-   <h3> {{user.username| capitalize}} </h3>
-
-   {% if user.bio %}
-     <p> {{user.bio}} </p>
-   {% else %}
-     <p> {{user.username| capitalize}} has no bio </p>
-   {% endif %}  
+<div class="container-fluid">
    
-   <button class="btn">
-     <a href="{{url_for('main.update_profile',uname=user.username)}}">Update Profile</a>
-    </button>
+  <div class="row poster">
+    <nav>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="/"> 1 Minute rush </a></li>
+          <li><a href="/">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="{{url_for('main.add_pitch')}}"
+              >Add Pitch</a
+            >
+            </li>
+            <li>
+            <a href="{{url_for('main.profile',uname=current_user.username)}}"
+              >Profile</a
+            >
+          </li>
+          <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+          {% else %}
+          <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+          {%endif%}
+        </ul>
+      </div>
+    </nav>
   </div>
+  <div class="container">  
+    <div class="row">
+      <div class="col-md-4">
+       <h3> {{user.username| capitalize}} </h3>
 
-  <div class="col-md-4">
+      {% if user.bio %}
+        <p> {{user.bio}} </p>
+      {% else %}
+        <p> {{user.username| capitalize}} has no bio </p>
+      {% endif %}  
+   
+   
+        <a href="{{url_for('main.update_profile',uname=user.username)}}" class=" btn btn-primary">Update Profile</a>
+   
+      </div>
 
-   {% if user.profile_pic_path %}
-   <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
-   {% else %}
-   <p>No profile picture</p>
-   {% endif %}
+      <div class="col-md-4">
 
+      {% if user.profile_pic_path %}
+        <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class=" img-thumbnail">
+      {% else %}
+        <p>No profile picture</p>
+      {% endif %}
 
-   {% if user == current_user %}
-   <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
+      </div>
+      <div class="col-md-4">
+      {% if user == current_user %}
+       <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
 
-     <input type="file"  name="photo" class="form-control" required>
-     <input type="submit">
-   </form>
-   {% endif %}
+       <input type="file"  name="photo" class="form-control" required>
+       <input type="submit">
+       </form>
+      {% endif %}
+      </div>
+    </div>
   </div>
- </div>
 </div>
 {% endblock %}
