@@ -1,0 +1,43 @@
+body {
+ margin: 0;
+ padding: 0;
+}
+
+h2, h1, h3{
+  font-family: 'Grenze Gotisch', cursive;
+}
+
+.poster {
+ height: 50vh;
+ background-image: url("../static/images/sliced-yellow-lemon-fruit-2378426.jpg");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
+ font-family: 'Ranchers', cursive;
+}
+
+.bg-image {
+ height: 100vh;
+ background-image: url("../static/images/sliced-lemon-on-ice-water-90763.jpg");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
+}
+
+.poster2 {
+ height: 50vh;
+ background-image: url("../static/images/three-sliced-lemons-757912.jpg");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
+ font-family: 'Ranchers', cursive;
+}
+
+.styler {
+  height: 30vh;
+}
+
+.prof {
+  height: 10vh;
+  width: 10vw;
+}
