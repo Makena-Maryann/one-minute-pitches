@@ -5,7 +5,7 @@
       <h2>{{ pitch.title }}</h2> 
       <p>{{ pitch.pitch }}</p>
       <p><em>{{ pitch.user.username }}</em></p>
-      <p>({{ pitch.time }})</p>
+      <p>({{ pitch.time.strftime('%B %d,%y /%H:%m') }})</p>
       <a href="{{url_for('main.pitch', id = pitch.id)}}" class=" btn btn-primary">Comments</a> 
     </div>
     <hr>
