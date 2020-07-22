@@ -18,7 +18,7 @@ class CommentModelTest(unittest.TestCase):
     def test_check_instance_variables(self):
         self.assertEquals(self.new_comment.pitch_comment,'Awesome')
         self.assertEquals(self.new_comment.pitch,self.new_pitch)
-        self.assertEquals(self.new_pitch.user,self.user_Makena)
+        self.assertEquals(self.new_comment.user,self.user_Makena)
 
     def test_save_pitch(self):
         self.new_comment.save_comment()
