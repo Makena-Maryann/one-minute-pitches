@@ -32,7 +32,7 @@ class TestConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://maryann:Maryann00*@localhost/pitcher_test'
+    SQLALCHEMY_DATABASE_URI=os.environ.get("TEST_URL")
 
 class DevConfig(Config):
     '''
